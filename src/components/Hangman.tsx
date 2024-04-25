@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "../styles/hungman.css";
 
 import i0 from "../img/h0.png";
@@ -8,7 +8,9 @@ import i3 from "../img/h3.png";
 import i4 from "../img/h4.png";
 import i5 from "../img/h5.png";
 import i6 from "../img/h6.png";
+
 import Palabra from "../model/palabaAdivina";
+import { Timer } from "./Timer";
 
 interface Props {
   words: Palabra;
@@ -21,6 +23,7 @@ export const Hangman = ({ words }: Props): React.JSX.Element => {
   const [guessedLetters, setguessedLetters] = useState<string[]>([]);
   const [errorCount, setErrorCount] = useState(0);
   const [inputval, setInputval] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const displayWord = selectWord.split("").map((latter) => {
     console.log("slecWord:" + selectWord);
@@ -50,18 +53,26 @@ export const Hangman = ({ words }: Props): React.JSX.Element => {
     setSelectWord(newWord);
     setguessedLetters([]);
     setErrorCount(0);
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
   return (
     <div className="Hangmant">
+      <div>
+        <Timer start={displayWord.join("") !== selectWord && errorCount < 6} />
+      </div>
       <h2>adivina que {words.tipodelista} es</h2>
       <img src={imgItentos[errorCount]} alt="" />
       <p> {displayWord.join(" ")} </p>
       <input
+        ref={inputRef}
         maxLength={1}
         onChange={(e) => handleGuss(e.target.value)}
         autoFocus={true}
         value={inputval}
-        disabled={ errorCount > 6}
+        disabled={errorCount > 5}
       />
       {(displayWord.join("") === selectWord || errorCount > 5) && (
         <button
