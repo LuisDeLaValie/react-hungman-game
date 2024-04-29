@@ -80,21 +80,36 @@ export const Hangman = ({ words }: Props): React.JSX.Element => {
     }
   };
   return (
-    <div className="Hangmant">
+    <div className="Hangmant bg-cyan-100">
       {displayWord.join("") === selectWord || errorCount > 5 ? (
-        <Cortinilla />
+        <Cortinilla>
+          <button
+          className="rounded-xl bg-slate-700 text-white px-6 py-3 mt-10"
+            onClick={() => {
+              rstarGame();
+              setSelectWord(
+                words.lista[Math.floor(Math.random() * words.lista.length)]
+              );
+            }}
+          >
+            Selec new Word
+          </button>
+        </Cortinilla>
       ) : (
-        <>
+        <div className="flex flex-col items-center justify-center w-screen h-screen bg-gray-200">
           <div>
             <Timer
               start={displayWord.join("") !== selectWord && errorCount < 6}
               timeCalback={(val) => settime(val)}
             />
           </div>
-          <h2>adivina que {words.tipodelista} es</h2>
-          <img src={imgItentos[errorCount]} alt="" />
-          <p> {displayWord.join(" ")} </p>
+          <h2 className="text-5xl font-bold italic">
+            adivina que {words.tipodelista} es
+          </h2>
+          <img className="mt-10" src={imgItentos[errorCount]} alt="" />
+          <p className="text-4xl"> {displayWord.join(" ")} </p>
           <input
+            className="border border-gray-600 rounded-lg m-3"
             ref={inputRef}
             maxLength={1}
             onChange={(e) => handleGuss(e.target.value)}
@@ -102,20 +117,7 @@ export const Hangman = ({ words }: Props): React.JSX.Element => {
             value={inputval}
             disabled={errorCount > 5}
           />
-        </>
-      )}
-
-      {(displayWord.join("") === selectWord || errorCount > 5) && (
-        <button
-          onClick={() => {
-            rstarGame();
-            setSelectWord(
-              words.lista[Math.floor(Math.random() * words.lista.length)]
-            );
-          }}
-        >
-          Selec new Word
-        </button>
+        </div>
       )}
     </div>
   );

@@ -28,7 +28,7 @@ function App(): React.JSX.Element {
   // console.log(frutas);
   const [play, setPlay] = useState(false);
   return (
-    <div className="App">
+    <div className="App bg-cyan-100 w-screen h-screen flex flex-col items-center justify-center">
       {!play ? (
         <Welcom play={() => setPlay(true)} />
       ) : (

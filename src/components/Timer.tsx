@@ -36,5 +36,5 @@ export const Timer = ({ start, timeCalback }: Props): React.JSX.Element => {
   }, [start]);
 
   console.log(time);
-  return <h2>tiempo concurrido {cronometro}</h2>;
+  return <h2 className="italic font-bold ">tiempo concurrido {cronometro}</h2>;
 };
