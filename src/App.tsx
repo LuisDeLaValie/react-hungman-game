@@ -10,7 +10,7 @@ const worods: Palabra[] = [
   },
   {
     tipodelista: "Mascota",
-    lista: ["gato", "perro", "perico", "cuyo", "tortuga", "pes"],
+    lista: ["gato", "perro", "perico", "cullo", "tortuga", "pez"],
   },
   {
     tipodelista: "Ave",
