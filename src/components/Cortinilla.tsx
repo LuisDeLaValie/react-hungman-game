@@ -42,6 +42,9 @@ export const Cortinilla = ({
               <th scope="col" className="px-6 py-3">
                 Partida
               </th>
+              <th scope="col" className="px-6 py-3">
+                Tiempo
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -56,6 +59,7 @@ export const Cortinilla = ({
                       {i + 1}
                     </th>
                     <td className="px-6 py-4"> {val.status} </td>
+                    <td className="px-6 py-4"> {val.timepo} </td>
                   </tr>
                 );
               } else {
@@ -68,6 +72,7 @@ export const Cortinilla = ({
                       {i + 1}
                     </th>
                     <td className="px-6 py-4"> {val.status} </td>
+                    <td className="px-6 py-4"> {val.timepo} </td>
                   </tr>
                 );
               }
